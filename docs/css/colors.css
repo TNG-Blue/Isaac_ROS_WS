@@ -1,0 +1,24 @@
+:root {
+  /* Light mode colors */
+  --md-primary-fg-color: #ff6f00;
+  --md-primary-bg-color: #fff8f0;
+  --md-accent-fg-color: #ffd54f;
+  --link-color: #ff9100;
+}
+
+[data-md-color-scheme="slate"] {
+  /* Dark mode override */
+  --md-primary-fg-color: #ff9100;
+  --md-primary-bg-color: #212121;
+  --md-accent-fg-color: #ffc400;
+  --link-color: #ffc107;
+}
+
+.md-typeset a {
+  color: var(--link-color);
+}
+
+.md-header,
+.md-footer {
+  background-color: var(--md-primary-bg-color);
+}

@@ -1,0 +1,49 @@
+site_name: Isaac ROS Workspace Documentation
+site_url: https://tng-blue.github.io/Isaac_ROS_WS
+repo_url: https://github.com/TNG-Blue/Isaac_ROS_WS
+repo_name: TNG-Blue/Isaac_ROS_WS
+edit_uri: edit/main/docs/
+site_description: Documentation for Isaac ROS Workspace - Integrating NVIDIA Isaac ROS with ROS 2 for robotics development
+
+theme:
+  name: mkdocs
+  favicon: "images/favicon.ico"
+  palette:
+    primary: "indigo"
+    accent: "pink"
+  font:
+    text: "Roboto"
+    code: "Roboto Mono"
+  logo:
+    text: "Isaac ROS Workspace"
+  navigation:
+    - Home: index.md
+    - Getting Started: getting-started.md
+    - Docker: docker.md
+    - Kubernetes: kubernetes.md
+    - Troubleshooting: troubleshooting.md
+  include_search_page: false
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - pymdownx.superfences
+  - pymdownx.details
+
+extra_css:
+  - css/version-select.css
+  - css/colors.css
+extra_javascript:
+  - js/version-select.js
+
+plugins:
+  - search
+
+# File paths configuration
+docs_dir: docs
+site_dir: site
+
+copyright: 2025 TNG-Blue

@@ -1,0 +1,57 @@
+[submodule "jetson-containers"]
+	path = jetson-containers
+	url = git@github.com:dusty-nv/jetson-containers.git
+[submodule "jetson-inference"]
+	path = jetson-inference
+	url = git@github.com:dusty-nv/jetson-inference.git
+[submodule "torch2trt"]
+	path = torch2trt
+	url = git@github.com:NVIDIA-AI-IOT/torch2trt.git
+[submodule "src/Isaac_ROS-Jetbot_NanoOWL"]
+	path = src/Isaac_ROS-Jetbot_NanoOWL
+	url = git@github.com:TNG-Blue/Isaac_ROS-Jetbot_NanoOWL.git
+[submodule "Lidar_AI_Solution"]
+	path = Lidar_AI_Solution
+	url = git@github.com:NVIDIA-AI-IOT/Lidar_AI_Solution.git
+[submodule "src/isaac_ros_dnn_inference"]
+	path = src/isaac_ros_dnn_inference
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_dnn_inference.git
+[submodule "src/isaac_ros_image_pipeline"]
+	path = src/isaac_ros_image_pipeline
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_image_pipeline
+[submodule "src/YOLOv5-with-Isaac-ROS"]
+	path = src/YOLOv5-with-Isaac-ROS
+	url = https://github.com/NVIDIA-AI-IOT/YOLOv5-with-Isaac-ROS.git
+[submodule "src/isaac_ros_visual_slam"]
+	path = src/isaac_ros_visual_slam
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_visual_slam.git
+[submodule "src/isaac_ros_nitros_bridge"]
+	path = src/isaac_ros_nitros_bridge
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_nitros_bridge.git
+[submodule "src/isaac_ros_mission_client"]
+	path = src/isaac_ros_mission_client
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_mission_client.git
+[submodule "src/isaac_ros_nvblox"]
+	path = src/isaac_ros_nvblox
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_nvblox.git
+[submodule "src/isaac_ros_argus_camera"]
+	path = src/isaac_ros_argus_camera
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_argus_camera.git
+[submodule "src/isaac_ros_compression"]
+	path = src/isaac_ros_compression
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_compression.git
+[submodule "src/isaac_ros_nova"]
+	path = src/isaac_ros_nova
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_nova.git
+[submodule "src/isaac_ros_common"]
+	path = src/isaac_ros_common
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common.git
+[submodule "src/isaac_ros_nitros"]
+	path = src/isaac_ros_nitros
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_nitros.git
+[submodule "src/isaac_ros_benchmark"]
+	path = src/isaac_ros_benchmark
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_benchmark.git
+[submodule "src/isaac_ros_dnn_stereo_depth"]
+	path = src/isaac_ros_dnn_stereo_depth
+	url = https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_dnn_stereo_depth.git
