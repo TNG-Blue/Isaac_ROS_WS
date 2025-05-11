@@ -51,10 +51,18 @@ This workspace serves as a foundational base for integrating NVIDIA Isaac ROS pa
 
 This repository is built upon the Isaac ROS packages and tools provided by NVIDIA. All credits for the core Isaac ROS technology go to NVIDIA, whose cutting-edge hardware and software provide the foundation for advanced robotics research and development. This repository offers enhanced configuration and integration to facilitate an easier setup process and more efficient use of the Isaac ROS ecosystem.
 
+In addition, this project may incorporate or build upon third-party open-source projects, libraries, or tools. We extend our sincere thanks to the developers and maintainers of these projects for their valuable contributions to the open-source community.
+
+
 ---
 
 ## 📜 License
 
-This project is licensed under the **MIT License**. For more details, refer to the [LICENSE](./LICENSE) file. Please note that the use of NVIDIA Isaac ROS packages is subject to NVIDIA’s licensing terms and conditions, which must be reviewed and adhered to separately.
+This project is licensed under the **MIT License**. For more details, refer to the [LICENSE](./LICENSE) file.
+
+Please note:
+
+The use of NVIDIA Isaac ROS packages is subject to NVIDIA’s own licensing terms and conditions, which must be reviewed and followed separately.
+In addition, this repository may include or depend on third-party software components, each of which may be governed by its own open-source license. Please consult the relevant LICENSE or NOTICE files included in this repository or in the respective submodules for full details.
 
 ---
