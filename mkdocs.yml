@@ -36,6 +36,7 @@ markdown_extensions:
 extra_css:
   - css/version-select.css
   - css/colors.css
+  - css/animations.css
 extra_javascript:
   - js/version-select.js
 

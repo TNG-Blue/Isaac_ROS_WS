@@ -1,0 +1,126 @@
+name: Deploy MkDocs to GitHub Pages
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - '.github/workflows/docs_deploy.yml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  actions: read
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install mkdocs
+          pip install mkdocs-material
+          pip install mkdocs-git-revision-date-localized-plugin
+          pip install mkdocs-minify-plugin
+          pip install mkdocs-mermaid2-plugin
+          pip install mkdocs-awesome-pages-plugin
+          pip install mkdocs-redirects
+          pip install mkdocs-glightbox
+          pip install pymdown-extensions
+          pip install mkdocs-section-index || true
+          pip install mkdocs-literate-nav || true
+          pip install mkdocs-gen-files || true
+          pip install mkdocs-macros-plugin || true
+
+      - name: Build MkDocs site
+        run: |
+          # Kiểm tra xem mkdocs.yml ở đâu
+          if [ -f "mkdocs.yml" ]; then
+            echo "Building from root directory"
+            mkdocs build --clean
+          elif [ -f "docs/mkdocs.yml" ]; then
+            echo "Building from docs directory"
+            cd docs && mkdocs build --clean
+            mv site ../site
+          else
+            echo "Error: mkdocs.yml not found"
+            exit 1
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+  deploy:
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  link-check:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install mkdocs mkdocs-material
+          pip install mkdocs-mermaid2-plugin
+          pip install -r requirements.txt || true
+
+      - name: Build site for testing
+        run: mkdocs build --clean
+
+      - name: Check internal links
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress './site/**/*.html'
+          fail: true
