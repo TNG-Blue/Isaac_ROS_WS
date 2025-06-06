@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://tng-blue.github.io/Isaac_ROS_WS/getting-started/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>🏁 Getting Started with Isaac ROS Workspace - Isaac ROS Workspace Documentation</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../css/version-select.css" rel="stylesheet">
+        <link href="../css/colors.css" rel="stylesheet">
+        <link href="../css/animations.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Isaac ROS Workspace Documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">🚀 Isaac ROS Workspace Documentation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../docker/" class="nav-link">🐳 Docker Deployment Guide</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">🏁 Getting Started with Isaac ROS Workspace</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../kubernetes/" class="nav-link">☸️ Kubernetes Orchestration</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../troubleshooting/" class="nav-link">🔧 Troubleshooting Guide</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../docker/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../kubernetes/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/TNG-Blue/Isaac_ROS_WS/edit/main/docs/getting-started.md" class="nav-link">Edit on TNG-Blue/Isaac_ROS_WS
+                                    </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#getting-started-with-isaac-ros-workspace" class="nav-link">🏁 Getting Started with Isaac ROS Workspace</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#setup-overview" class="nav-link">🎯 Setup Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#prerequisites-checklist" class="nav-link">🛠️ Prerequisites Checklist</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#installation-workflow" class="nav-link">🚀 Installation Workflow</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#configuration-validation" class="nav-link">🔧 Configuration &amp; Validation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#next-steps-best-practices" class="nav-link">🎯 Next Steps &amp; Best Practices</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#additional-resources" class="nav-link">📚 Additional Resources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="getting-started-with-isaac-ros-workspace">🏁 Getting Started with Isaac ROS Workspace<a class="headerlink" href="#getting-started-with-isaac-ros-workspace" title="Permanent link">&para;</a></h1>
+<div align="center">
+  <h2>Your Journey to AI-Powered Robotics Begins Here</h2>
+  <p><em>A comprehensive guide to setting up your Isaac ROS development environment</em></p>
+</div>
+
+<hr />
+<h2 id="setup-overview">🎯 Setup Overview<a class="headerlink" href="#setup-overview" title="Permanent link">&para;</a></h2>
+<p>This guide will walk you through the complete setup process for the Isaac ROS Workspace, from initial system preparation to running your first AI-powered robotics application.</p>
+<h3 id="what-youll-accomplish">📋 What You'll Accomplish<a class="headerlink" href="#what-youll-accomplish" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph LR
+    A[System Setup] --&gt; B[Dependencies]
+    B --&gt; C[Workspace Clone]
+    C --&gt; D[Environment Config]
+    D --&gt; E[First Build]
+    E --&gt; F[Validation]
+    F --&gt; G[Ready to Develop! 🚀]
+
+    style A fill:#e3f2fd
+    style G fill:#e8f5e8
+</code></pre></div>
+<p><strong>Estimated Time:</strong> 30-45 minutes<br />
+<strong>Difficulty Level:</strong> Beginner to Intermediate</p>
+<hr />
+<h2 id="prerequisites-checklist">🛠️ Prerequisites Checklist<a class="headerlink" href="#prerequisites-checklist" title="Permanent link">&para;</a></h2>
+<h3 id="hardware-requirements">Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Supported Platforms</p>
+<p>=== "NVIDIA Jetson (Recommended)"</p>
+<div class="codehilite"><pre><span></span><code>| Device | RAM | Storage | Performance |
+|--------|-----|---------|-------------|
+| **Jetson AGX Orin** | 32GB | 64GB+ | Excellent ⭐⭐⭐⭐⭐ |
+| **Jetson Xavier NX** | 8GB | 32GB+ | Very Good ⭐⭐⭐⭐ |
+| **Jetson Nano** | 4GB | 32GB+ | Good ⭐⭐⭐ |
+</code></pre></div>
+
+<p>=== "x86_64 Development PC"</p>
+<div class="codehilite"><pre><span></span><code>| Component | Minimum | Recommended |
+|-----------|---------|-------------|
+| **CPU** | Intel i5 / AMD Ryzen 5 | Intel i7 / AMD Ryzen 7 |
+| **RAM** | 8GB | 16GB+ |
+| **GPU** | NVIDIA GTX 1060 | NVIDIA RTX 3070+ |
+| **Storage** | 50GB free | 100GB+ SSD |
+</code></pre></div>
+
+</div>
+<h3 id="software-prerequisites">Software Prerequisites<a class="headerlink" href="#software-prerequisites" title="Permanent link">&para;</a></h3>
+<div class="grid cards" markdown>
+
+-   :material-ubuntu: **Ubuntu Linux**
+
+    ---
+
+    **Supported Versions:**
+
+    - Ubuntu 20.04 LTS (Focal)
+    - Ubuntu 22.04 LTS (Jammy)
+
+    **Installation Status:** ✅ Required
+
+-   :material-robot: **ROS 2 Humble**
+
+    ---
+
+    **Latest LTS release of ROS 2**
+
+    - Full desktop installation
+    - Development tools included
+
+    **Installation Status:** ✅ Required
+
+-   :material-docker: **Docker & Compose**
+
+    ---
+
+    **Container runtime platform**
+
+    - Docker Engine 20.10+
+    - Docker Compose v2
+
+    **Installation Status:** ✅ Required
+
+-   :material-nvidia: **NVIDIA Software Stack**
+
+    ---
+
+    **GPU acceleration support**
+
+    - JetPack SDK (Jetson)
+    - NVIDIA drivers (x86_64)
+
+    **Installation Status:** ✅ Required
+
+</div>
+
+<hr />
+<h2 id="installation-workflow">🚀 Installation Workflow<a class="headerlink" href="#installation-workflow" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-system-preparation">Step 1: System Preparation<a class="headerlink" href="#step-1-system-preparation" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Pre-Installation Checklist</p>
+<p>Before proceeding, ensure your system meets all prerequisites:</p>
+<ul>
+<li>[ ] Ubuntu 20.04/22.04 installed and updated</li>
+<li>[ ] Internet connection available</li>
+<li>[ ] Sufficient storage space (50GB+ free)</li>
+<li>[ ] Admin/sudo privileges</li>
+</ul>
+</div>
+<div class="highlight"><pre><span></span><code>graph TD
+    A[Fresh Ubuntu System] --&gt; B{ROS 2 Installed?}
+    B --&gt;|No| C[Install ROS 2 Humble]
+    B --&gt;|Yes| D{Docker Installed?}
+    C --&gt; D
+    D --&gt;|No| E[Install Docker &amp; NVIDIA Runtime]
+    D --&gt;|Yes| F{NVIDIA Stack Ready?}
+    E --&gt; F
+    F --&gt;|No| G[Install JetPack/NVIDIA Drivers]
+    F --&gt;|Yes| H[✅ System Ready]
+    G --&gt; H
+</code></pre></div>
+<h3 id="step-2-workspace-acquisition">Step 2: Workspace Acquisition<a class="headerlink" href="#step-2-workspace-acquisition" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Clone Strategy</p>
+<p>The workspace uses Git submodules for modular architecture. Choose your preferred approach:</p>
+</div>
+<p>=== "🔄 Complete Clone (Recommended)"</p>
+<div class="codehilite"><pre><span></span><code>**Best for:** Full development environment
+
+**Includes:** All Isaac ROS packages and dependencies
+
+```mermaid
+graph LR
+    A[git clone --recursive] --&gt; B[All Submodules]
+    B --&gt; C[Complete Workspace]
+    C --&gt; D[Ready for Development]
+
+    style D fill:#e8f5e8
+```
+</code></pre></div>
+
+<p>=== "⚡ Minimal Clone"</p>
+<div class="codehilite"><pre><span></span><code>**Best for:** Quick testing or specific packages only
+
+**Includes:** Core workspace without submodules
+
+```mermaid
+graph LR
+    A[git clone] --&gt; B[Core Only]
+    B --&gt; C[Manual Submodule Selection]
+    C --&gt; D[Selective Development]
+
+    style D fill:#fff3e0
+```
+</code></pre></div>
+
+<h3 id="step-3-dependency-resolution">Step 3: Dependency Resolution<a class="headerlink" href="#step-3-dependency-resolution" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph TB
+    subgraph &quot;Dependency Management&quot;
+        A[rosdep update] --&gt; B[Scan Dependencies]
+        B --&gt; C[Install System Packages]
+        C --&gt; D[Resolve ROS Dependencies]
+        D --&gt; E[Verify Installation]
+    end
+
+    subgraph &quot;Build Preparation&quot;
+        F[Environment Sourcing] --&gt; G[Workspace Configuration]
+        G --&gt; H[Build Tool Setup]
+    end
+
+    E --&gt; F
+    H --&gt; I[✅ Ready to Build]
+
+    style I fill:#e8f5e8
+</code></pre></div>
+<h3 id="step-4-workspace-building">Step 4: Workspace Building<a class="headerlink" href="#step-4-workspace-building" title="Permanent link">&para;</a></h3>
+<div class="admonition success">
+<p class="admonition-title">Build Process</p>
+<p>The colcon build system handles the complex dependency tree automatically:</p>
+<p><strong>Build Features:</strong></p>
+<ul>
+<li><strong>Parallel Compilation:</strong> Utilizes all CPU cores</li>
+<li><strong>Incremental Builds:</strong> Only rebuilds changed packages</li>
+<li><strong>Symlink Install:</strong> Faster development iteration</li>
+<li><strong>Dependency Tracking:</strong> Automatic build order resolution</li>
+</ul>
+</div>
+<div class="highlight"><pre><span></span><code>graph TD
+    A[colcon build] --&gt; B{Build Type}
+    B --&gt;|Development| C[--symlink-install]
+    B --&gt;|Production| D[--cmake-args -DCMAKE_BUILD_TYPE=Release]
+    C --&gt; E[Package Discovery]
+    D --&gt; E
+    E --&gt; F[Dependency Resolution]
+    F --&gt; G[Parallel Compilation]
+    G --&gt; H[Install Space Setup]
+    H --&gt; I[Environment Generation]
+    I --&gt; J[✅ Build Complete]
+
+    style J fill:#e8f5e8
+</code></pre></div>
+<hr />
+<h2 id="configuration-validation">🔧 Configuration &amp; Validation<a class="headerlink" href="#configuration-validation" title="Permanent link">&para;</a></h2>
+<h3 id="environment-setup">Environment Setup<a class="headerlink" href="#environment-setup" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Environment Management</p>
+<p>Proper environment setup is crucial for ROS 2 operation:</p>
+</div>
+<div class="highlight"><pre><span></span><code>graph LR
+    subgraph &quot;Environment Stack&quot;
+        A[System Environment] --&gt; B[ROS 2 Base]
+        B --&gt; C[Workspace Overlay]
+        C --&gt; D[Isaac ROS Extensions]
+    end
+
+    subgraph &quot;Validation&quot;
+        E[Source Verification] --&gt; F[Package Discovery]
+        F --&gt; G[Node Execution]
+        G --&gt; H[Topic Communication]
+    end
+
+    D --&gt; E
+    H --&gt; I[✅ Environment Ready]
+
+    style I fill:#e8f5e8
+</code></pre></div>
+<h3 id="system-validation">System Validation<a class="headerlink" href="#system-validation" title="Permanent link">&para;</a></h3>
+<div class="grid cards" markdown>
+
+-   :material-check-circle: **Build Verification**
+
+    ---
+
+    Ensure all packages compiled successfully
+
+    **Indicators:**
+
+    - No compilation errors
+    - All packages in install space
+    - Environment scripts generated
+
+-   :material-rocket-launch: **Runtime Testing**
+
+    ---
+
+    Validate Isaac ROS components
+
+    **Test Areas:**
+
+    - Node startup
+    - Topic communication
+    - GPU acceleration
+    - Container compatibility
+
+-   :material-speedometer: **Performance Check**
+
+    ---
+
+    Verify optimal system performance
+
+    **Metrics:**
+
+    - GPU memory usage
+    - CPU utilization
+    - Network latency
+    - Storage I/O
+
+-   :material-shield-check: **Security Validation**
+
+    ---
+
+    Ensure secure operation
+
+    **Checks:**
+
+    - Container isolation
+    - Network policies
+    - User permissions
+    - Data protection
+
+</div>
+
+<hr />
+<h2 id="next-steps-best-practices">🎯 Next Steps &amp; Best Practices<a class="headerlink" href="#next-steps-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="development-workflow">Development Workflow<a class="headerlink" href="#development-workflow" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph TD
+    A[Setup Complete] --&gt; B{Development Goal}
+    B --&gt;|Perception| C[Camera &amp; Vision Setup]
+    B --&gt;|Navigation| D[SLAM &amp; Planning]
+    B --&gt;|Manipulation| E[Arm Control]
+    B --&gt;|Custom AI| F[Model Integration]
+
+    C --&gt; G[Sensor Calibration]
+    D --&gt; H[Map Building]
+    E --&gt; I[Kinematics Setup]
+    F --&gt; J[Training Pipeline]
+
+    G --&gt; K[Application Development]
+    H --&gt; K
+    I --&gt; K
+    J --&gt; K
+
+    K --&gt; L[Testing &amp; Validation]
+    L --&gt; M[Deployment]
+
+    style M fill:#e8f5e8
+</code></pre></div>
+<h3 id="recommended-learning-path">Recommended Learning Path<a class="headerlink" href="#recommended-learning-path" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Progressive Learning</p>
+<p><strong>Phase 1: Foundation (1-2 weeks)</strong></p>
+<ul>
+<li>ROS 2 concepts and architecture</li>
+<li>Isaac ROS package overview</li>
+<li>Container basics with Docker</li>
+</ul>
+<p><strong>Phase 2: Development (2-4 weeks)</strong></p>
+<ul>
+<li>Sensor integration and calibration</li>
+<li>AI model deployment</li>
+<li>Custom node development</li>
+</ul>
+<p><strong>Phase 3: Advanced (4+ weeks)</strong></p>
+<ul>
+<li>Multi-robot coordination</li>
+<li>Kubernetes orchestration</li>
+<li>Performance optimization</li>
+</ul>
+</div>
+<h3 id="common-gotchas-solutions">Common Gotchas &amp; Solutions<a class="headerlink" href="#common-gotchas-solutions" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Troubleshooting Quick Reference</p>
+<p><strong>Build Issues:</strong></p>
+<ul>
+<li>Ensure all dependencies installed via <code>rosdep</code></li>
+<li>Check for conflicting Python versions</li>
+<li>Verify CUDA compatibility</li>
+</ul>
+<p><strong>Runtime Problems:</strong></p>
+<ul>
+<li>Source workspace environment in each terminal</li>
+<li>Check GPU memory availability</li>
+<li>Validate network configuration for multi-device setups</li>
+</ul>
+</div>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<div class="grid cards" markdown>
+
+-   :material-book-open-page-variant: **Detailed Guides**
+
+    ---
+
+    In-depth documentation for specific components
+
+    [Browse Documentation](/)
+
+-   :material-video: **Video Tutorials**
+
+    ---
+
+    Step-by-step visual guides
+
+    [Watch Tutorials](https://learn.nvidia.com/isaac)
+
+-   :material-forum: **Community Support**
+
+    ---
+
+    Get help from experienced developers
+
+    [Join Community](https://discord.gg/robotics)
+
+-   :material-github: **Example Projects**
+
+    ---
+
+    Reference implementations and demos
+
+    [View Examples](https://github.com/TNG-Blue/Isaac_ROS_WS/tree/master/examples)
+
+</div>
+
+<hr />
+<div align="center">
+  <p><strong>🎉 Congratulations! You're ready to build amazing robotics applications!</strong></p>
+  <p><em>Continue to <a href="docker.md">Docker Setup</a> or explore <a href="kubernetes.md">Kubernetes Orchestration</a></em></p>
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>2025 TNG-Blue</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../js/version-select.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://tng-blue.github.io/Isaac_ROS_WS/troubleshooting/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>🔧 Troubleshooting Guide - Isaac ROS Workspace Documentation</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../css/version-select.css" rel="stylesheet">
+        <link href="../css/colors.css" rel="stylesheet">
+        <link href="../css/animations.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Isaac ROS Workspace Documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">🚀 Isaac ROS Workspace Documentation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../docker/" class="nav-link">🐳 Docker Deployment Guide</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../getting-started/" class="nav-link">🏁 Getting Started with Isaac ROS Workspace</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../kubernetes/" class="nav-link">☸️ Kubernetes Orchestration</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">🔧 Troubleshooting Guide</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../kubernetes/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/TNG-Blue/Isaac_ROS_WS/edit/main/docs/troubleshooting.md" class="nav-link">Edit on TNG-Blue/Isaac_ROS_WS
+                                    </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#troubleshooting-guide" class="nav-link">🔧 Troubleshooting Guide</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#diagnostic-overview" class="nav-link">🎯 Diagnostic Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#critical-issues-quick-fixes" class="nav-link">🚨 Critical Issues &amp; Quick Fixes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#installation-setup-issues" class="nav-link">🔧 Installation &amp; Setup Issues</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#runtime-performance-issues" class="nav-link">🚀 Runtime &amp; Performance Issues</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#kubernetes-specific-issues" class="nav-link">☸️ Kubernetes-Specific Issues</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#advanced-debugging-techniques" class="nav-link">🔬 Advanced Debugging Techniques</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#getting-help-support" class="nav-link">📞 Getting Help &amp; Support</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#maintenance-prevention" class="nav-link">📋 Maintenance &amp; Prevention</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="troubleshooting-guide">🔧 Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Permanent link">&para;</a></h1>
+<div align="center">
+  <h2>Comprehensive Problem Resolution for Isaac ROS Workspace</h2>
+  <p><em>Quick solutions and detailed diagnostics for common issues</em></p>
+</div>
+
+<hr />
+<h2 id="diagnostic-overview">🎯 Diagnostic Overview<a class="headerlink" href="#diagnostic-overview" title="Permanent link">&para;</a></h2>
+<p>This guide provides systematic approaches to identify, diagnose, and resolve common issues encountered in Isaac ROS Workspace deployments across different environments and configurations.</p>
+<h3 id="problem-classification">🔍 Problem Classification<a class="headerlink" href="#problem-classification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph TD
+    A[Issue Detected] --&gt; B{Issue Category}
+
+    B --&gt;|Installation| C[Setup Problems]
+    B --&gt;|Runtime| D[Execution Issues]
+    B --&gt;|Performance| E[Optimization Needs]
+    B --&gt;|Network| F[Connectivity Problems]
+    B --&gt;|Hardware| G[Device Issues]
+
+    C --&gt; H[Environment Setup]
+    D --&gt; I[Container/Pod Failures]
+    E --&gt; J[Resource Constraints]
+    F --&gt; K[Communication Failures]
+    G --&gt; L[GPU/Hardware Faults]
+
+    style A fill:#ffcdd2
+    style H fill:#e8f5e8
+    style I fill:#e8f5e8
+    style J fill:#fff3e0
+    style K fill:#e3f2fd
+    style L fill:#f3e5f5
+</code></pre></div>
+<hr />
+<h2 id="critical-issues-quick-fixes">🚨 Critical Issues &amp; Quick Fixes<a class="headerlink" href="#critical-issues-quick-fixes" title="Permanent link">&para;</a></h2>
+<h3 id="high-priority-problems">High-Priority Problems<a class="headerlink" href="#high-priority-problems" title="Permanent link">&para;</a></h3>
+<div class="admonition danger">
+<p class="admonition-title">Critical System Failures</p>
+<p><strong>Immediate Action Required:</strong></p>
+<p>These issues can prevent system operation and require immediate attention.</p>
+</div>
+<div class="grid cards" markdown>
+
+-   :material-alert-circle: **GPU Not Detected**
+
+    ---
+
+    **Symptoms:** CUDA errors, no GPU acceleration, poor performance
+
+    **Quick Check:**
+    <div class="highlight"><pre><span></span><code>nvidia-smi<span class="w">  </span><span class="c1"># Should show GPU info</span>
+docker<span class="w"> </span>run<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>nvidia/cuda:11.8-base-ubuntu22.04<span class="w"> </span>nvidia-smi
+</code></pre></div>
+
+    **Common Causes:**
+
+    - NVIDIA drivers not installed
+    - nvidia-docker2 not configured
+    - Insufficient permissions
+
+-   :material-network-off: **ROS 2 Communication Failure**
+
+    ---
+
+    **Symptoms:** Nodes can't discover each other, no topic data
+
+    **Quick Check:**
+    <div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>node<span class="w"> </span>list<span class="w">  </span><span class="c1"># Should show active nodes</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>list<span class="w">  </span><span class="c1"># Should show available topics</span>
+</code></pre></div>
+
+    **Common Causes:**
+
+    - DDS configuration issues
+    - Network firewall blocking
+    - Incorrect environment sourcing
+
+-   :material-memory: **Out of Memory Errors**
+
+    ---
+
+    **Symptoms:** Pods killed by OOMKiller, slow performance
+
+    **Quick Check:**
+    <div class="highlight"><pre><span></span><code>free<span class="w"> </span>-h<span class="w">  </span><span class="c1"># Check available memory</span>
+kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w">  </span><span class="c1"># Check pod memory usage</span>
+</code></pre></div>
+
+    **Common Causes:**
+
+    - Insufficient memory allocation
+    - Memory leaks in applications
+    - Too many concurrent processes
+
+-   :material-harddisk: **Storage Issues**
+
+    ---
+
+    **Symptoms:** Write failures, container startup issues
+
+    **Quick Check:**
+    <div class="highlight"><pre><span></span><code>df<span class="w"> </span>-h<span class="w">  </span><span class="c1"># Check disk space</span>
+docker<span class="w"> </span>system<span class="w"> </span>df<span class="w">  </span><span class="c1"># Check Docker space usage</span>
+</code></pre></div>
+
+    **Common Causes:**
+
+    - Disk space exhaustion
+    - Permission problems
+    - I/O performance bottlenecks
+
+</div>
+
+<hr />
+<h2 id="installation-setup-issues">🔧 Installation &amp; Setup Issues<a class="headerlink" href="#installation-setup-issues" title="Permanent link">&para;</a></h2>
+<h3 id="environment-configuration-problems">Environment Configuration Problems<a class="headerlink" href="#environment-configuration-problems" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph TB
+    subgraph &quot;Common Setup Issues&quot;
+        A[ROS 2 Not Found] --&gt; B[Environment Variables]
+        C[Dependencies Missing] --&gt; D[Package Installation]
+        E[Build Failures] --&gt; F[Compiler Issues]
+        G[Permission Denied] --&gt; H[User/Group Config]
+    end
+
+    subgraph &quot;Resolution Process&quot;
+        I[Identify Root Cause] --&gt; J[Apply Targeted Fix]
+        J --&gt; K[Verify Resolution]
+        K --&gt; L[Document Solution]
+    end
+
+    B --&gt; I
+    D --&gt; I
+    F --&gt; I
+    H --&gt; I
+
+    style I fill:#fff3e0
+    style L fill:#e8f5e8
+</code></pre></div>
+<h3 id="step-by-step-diagnostics">Step-by-Step Diagnostics<a class="headerlink" href="#step-by-step-diagnostics" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Systematic Problem Solving</p>
+<p>=== "🔍 Environment Verification"</p>
+<div class="codehilite"><pre><span></span><code>**Check ROS 2 Installation:**
+
+1. Verify ROS 2 is properly installed
+2. Check environment sourcing
+3. Validate package discovery
+4. Test basic functionality
+
+**Diagnostic Commands:**
+```bash
+# Check ROS 2 installation
+which ros2
+echo $ROS_DISTRO
+
+# Verify environment
+printenv | grep ROS
+
+# Test basic functionality
+ros2 run demo_nodes_cpp talker
+```
+</code></pre></div>
+
+<p>=== "🐳 Docker Configuration"</p>
+<div class="codehilite"><pre><span></span><code>**Verify Docker Setup:**
+
+1. Check Docker service status
+2. Validate NVIDIA runtime
+3. Test GPU access
+4. Verify permissions
+
+**Diagnostic Commands:**
+```bash
+# Check Docker status
+systemctl status docker
+
+# Test NVIDIA runtime
+docker run --rm --gpus all nvidia/cuda:11.8-base nvidia-smi
+
+# Check user permissions
+groups $USER | grep docker
+```
+</code></pre></div>
+
+<p>=== "⚙️ Build System Issues"</p>
+<div class="codehilite"><pre><span></span><code>**Resolve Build Problems:**
+
+1. Check colcon installation
+2. Verify dependencies
+3. Clean build artifacts
+4. Rebuild with verbose output
+
+**Resolution Steps:**
+```bash
+# Clean and rebuild
+rm -rf build/ install/ log/
+colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+
+# Check specific package
+colcon build --packages-select &lt;package_name&gt; --verbose
+```
+</code></pre></div>
+
+</div>
+<h3 id="common-error-patterns-solutions">Common Error Patterns &amp; Solutions<a class="headerlink" href="#common-error-patterns-solutions" title="Permanent link">&para;</a></h3>
+<div class="grid cards" markdown>
+
+-   :material-bash: **Command Not Found**
+
+    ---
+
+    **Error Pattern:** `ros2: command not found`
+
+    **Root Causes:**
+
+    - ROS 2 not installed
+    - Environment not sourced
+    - Incorrect PATH configuration
+
+    **Solutions:**
+
+    - Install ROS 2 Humble
+    - Source setup script: `source /opt/ros/humble/setup.bash`
+    - Add to `.bashrc` for persistence
+
+-   :material-package-variant: **Package Not Found**
+
+    ---
+
+    **Error Pattern:** `Package 'X' not found`
+
+    **Root Causes:**
+
+    - Missing dependencies
+    - Workspace not built
+    - Package path not sourced
+
+    **Solutions:**
+
+    - Run `rosdep install --from-paths src --ignore-src -r -y`
+    - Build workspace: `colcon build`
+    - Source workspace: `source install/setup.bash`
+
+-   :material-key: **Permission Denied**
+
+    ---
+
+    **Error Pattern:** `Permission denied: '/dev/video0'`
+
+    **Root Causes:**
+
+    - User not in required groups
+    - Incorrect device permissions
+    - SELinux/AppArmor restrictions
+
+    **Solutions:**
+
+    - Add user to groups: `sudo usermod -aG video,dialout $USER`
+    - Check device permissions
+    - Configure security policies
+
+-   :material-network-strength-1-alert: **Network Binding Failed**
+
+    ---
+
+    **Error Pattern:** `Failed to bind to address`
+
+    **Root Causes:**
+
+    - Port already in use
+    - Network interface issues
+    - Firewall blocking
+
+    **Solutions:**
+
+    - Check port usage: `netstat -tulpn | grep :11311`
+    - Configure firewall rules
+    - Use different network interface
+
+</div>
+
+<hr />
+<h2 id="runtime-performance-issues">🚀 Runtime &amp; Performance Issues<a class="headerlink" href="#runtime-performance-issues" title="Permanent link">&para;</a></h2>
+<h3 id="performance-optimization-matrix">Performance Optimization Matrix<a class="headerlink" href="#performance-optimization-matrix" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph TB
+    subgraph &quot;Performance Bottlenecks&quot;
+        A[CPU Bound] --&gt; B[Optimize Algorithms]
+        C[Memory Bound] --&gt; D[Reduce Memory Usage]
+        E[I/O Bound] --&gt; F[Optimize Storage]
+        G[Network Bound] --&gt; H[Improve Communication]
+        I[GPU Bound] --&gt; J[Optimize CUDA Kernels]
+    end
+
+    subgraph &quot;Monitoring Tools&quot;
+        K[htop] --&gt; L[System Monitor]
+        M[nvidia-smi] --&gt; N[GPU Monitor]
+        O[iotop] --&gt; P[Disk Monitor]
+        Q[iftop] --&gt; R[Network Monitor]
+    end
+
+    B --&gt; K
+    D --&gt; M
+    F --&gt; O
+    H --&gt; Q
+    J --&gt; M
+
+    style L fill:#e8f5e8
+    style N fill:#e3f2fd
+    style P fill:#fff3e0
+    style R fill:#f3e5f5
+</code></pre></div>
+<h3 id="system-resource-analysis">System Resource Analysis<a class="headerlink" href="#system-resource-analysis" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Performance Tuning Strategies</p>
+<p><strong>CPU Optimization:</strong></p>
+<ul>
+<li>Monitor CPU usage patterns</li>
+<li>Optimize thread allocation</li>
+<li>Use CPU affinity for critical tasks</li>
+<li>Adjust process priorities</li>
+</ul>
+<p><strong>Memory Management:</strong></p>
+<ul>
+<li>Monitor memory leaks</li>
+<li>Optimize buffer sizes</li>
+<li>Use memory pools</li>
+<li>Configure swap appropriately</li>
+</ul>
+<p><strong>GPU Utilization:</strong></p>
+<ul>
+<li>Profile CUDA kernels</li>
+<li>Optimize memory transfers</li>
+<li>Use unified memory where appropriate</li>
+<li>Monitor GPU temperature and throttling</li>
+</ul>
+</div>
+<h3 id="advanced-diagnostics">Advanced Diagnostics<a class="headerlink" href="#advanced-diagnostics" title="Permanent link">&para;</a></h3>
+<div class="grid cards" markdown>
+
+-   :material-chart-line: **Performance Profiling**
+
+    ---
+
+    **Tools & Techniques:**
+
+    - `perf` for CPU profiling
+    - `nsys` for GPU profiling
+    - `valgrind` for memory analysis
+    - `strace` for system call tracing
+
+    **Usage Examples:**
+    <div class="highlight"><pre><span></span><code><span class="c1"># CPU profiling</span>
+perf<span class="w"> </span>record<span class="w"> </span>-g<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>my_package<span class="w"> </span>my_node
+perf<span class="w"> </span>report
+
+<span class="c1"># GPU profiling</span>
+nsys<span class="w"> </span>profile<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>isaac_ros_stereo_image_proc
+</code></pre></div>
+
+-   :material-memory: **Memory Analysis**
+
+    ---
+
+    **Memory Debugging:**
+
+    - Detect memory leaks
+    - Analyze allocation patterns
+    - Monitor heap usage
+    - Check for memory fragmentation
+
+    **Tools:**
+    <div class="highlight"><pre><span></span><code><span class="c1"># Memory leak detection</span>
+valgrind<span class="w"> </span>--leak-check<span class="o">=</span>full<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>my_package<span class="w"> </span>my_node
+
+<span class="c1"># Memory profiling</span>
+massif-visualizer<span class="w"> </span>massif.out.*
+</code></pre></div>
+
+-   :material-network-strength-4: **Network Diagnostics**
+
+    ---
+
+    **Network Performance:**
+
+    - Monitor bandwidth usage
+    - Analyze packet loss
+    - Check latency patterns
+    - Debug DDS communication
+
+    **Diagnostic Commands:**
+    <div class="highlight"><pre><span></span><code><span class="c1"># Network latency</span>
+ping<span class="w"> </span>-c<span class="w"> </span><span class="m">10</span><span class="w"> </span>target_host
+
+<span class="c1"># Bandwidth testing</span>
+iperf3<span class="w"> </span>-c<span class="w"> </span>target_host
+
+<span class="c1"># DDS monitoring</span>
+ros2<span class="w"> </span>run<span class="w"> </span>rqt_graph<span class="w"> </span>rqt_graph
+</code></pre></div>
+
+-   :material-harddisk: **Storage Performance**
+
+    ---
+
+    **I/O Optimization:**
+
+    - Monitor disk usage
+    - Analyze I/O patterns
+    - Optimize file system
+    - Configure SSD properly
+
+    **Performance Tests:**
+    <div class="highlight"><pre><span></span><code><span class="c1"># Disk speed test</span>
+dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/zero<span class="w"> </span><span class="nv">of</span><span class="o">=</span>testfile<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1G<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">oflag</span><span class="o">=</span>direct
+
+<span class="c1"># I/O monitoring</span>
+iotop<span class="w"> </span>-o
+</code></pre></div>
+
+</div>
+
+<hr />
+<h2 id="kubernetes-specific-issues">☸️ Kubernetes-Specific Issues<a class="headerlink" href="#kubernetes-specific-issues" title="Permanent link">&para;</a></h2>
+<h3 id="container-orchestration-problems">Container Orchestration Problems<a class="headerlink" href="#container-orchestration-problems" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph TD
+    subgraph &quot;Pod Issues&quot;
+        A[Pod Startup Failures] --&gt; B[Image Pull Errors]
+        A --&gt; C[Resource Constraints]
+        A --&gt; D[Configuration Issues]
+    end
+
+    subgraph &quot;Service Issues&quot;
+        E[Service Discovery] --&gt; F[DNS Problems]
+        E --&gt; G[Load Balancer Issues]
+        E --&gt; H[Endpoint Failures]
+    end
+
+    subgraph &quot;Storage Issues&quot;
+        I[Volume Mount Failures] --&gt; J[PVC Problems]
+        I --&gt; K[Permission Issues]
+        I --&gt; L[Storage Class Errors]
+    end
+
+    subgraph &quot;Network Issues&quot;
+        M[Pod Communication] --&gt; N[Network Policies]
+        M --&gt; O[CNI Problems]
+        M --&gt; P[Ingress Issues]
+    end
+
+    style A fill:#ffcdd2
+    style E fill:#fff3e0
+    style I fill:#e3f2fd
+    style M fill:#f3e5f5
+</code></pre></div>
+<h3 id="kubernetes-debugging-workflow">Kubernetes Debugging Workflow<a class="headerlink" href="#kubernetes-debugging-workflow" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Kubernetes Troubleshooting Steps</p>
+<p><strong>1. Check Pod Status:</strong>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;
+kubectl<span class="w"> </span>logs<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>--previous
+</code></pre></div></p>
+<p><strong>2. Verify Resources:</strong>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>top<span class="w"> </span>pods
+kubectl<span class="w"> </span>top<span class="w"> </span>nodes
+kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span>&lt;node-name&gt;
+</code></pre></div></p>
+<p><strong>3. Check Services:</strong>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>services
+kubectl<span class="w"> </span>describe<span class="w"> </span>service<span class="w"> </span>&lt;service-name&gt;
+kubectl<span class="w"> </span>get<span class="w"> </span>endpoints
+</code></pre></div></p>
+<p><strong>4. Debug Networking:</strong>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>--<span class="w"> </span>nslookup<span class="w"> </span>kubernetes.default
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>--<span class="w"> </span>ping<span class="w"> </span>&lt;other-pod-ip&gt;
+</code></pre></div></p>
+</div>
+<h3 id="common-kubernetes-issues">Common Kubernetes Issues<a class="headerlink" href="#common-kubernetes-issues" title="Permanent link">&para;</a></h3>
+<div class="grid cards" markdown>
+
+-   :material-image-off: **ImagePullBackOff**
+
+    ---
+
+    **Symptoms:** Pods stuck in ImagePullBackOff state
+
+    **Common Causes:**
+
+    - Image doesn't exist
+    - Registry authentication issues
+    - Network connectivity problems
+    - Image tag typos
+
+    **Resolution:**
+
+    - Verify image name and tag
+    - Check registry credentials
+    - Test network connectivity
+    - Use `kubectl describe pod` for details
+
+-   :material-cpu-64-bit: **Insufficient Resources**
+
+    ---
+
+    **Symptoms:** Pods in Pending state
+
+    **Common Causes:**
+
+    - Not enough CPU/memory
+    - No suitable nodes
+    - Resource quotas exceeded
+    - Node affinity constraints
+
+    **Resolution:**
+
+    - Check resource requests/limits
+    - Scale cluster if needed
+    - Adjust resource quotas
+    - Review scheduling constraints
+
+-   :material-network-off: **Service Unreachable**
+
+    ---
+
+    **Symptoms:** Cannot connect to services
+
+    **Common Causes:**
+
+    - Service selector mismatch
+    - Endpoint not ready
+    - Network policy blocking
+    - DNS resolution issues
+
+    **Resolution:**
+
+    - Verify service selectors
+    - Check pod readiness probes
+    - Review network policies
+    - Test DNS resolution
+
+-   :material-harddisk-remove: **Volume Mount Issues**
+
+    ---
+
+    **Symptoms:** Pods failing to start due to volume issues
+
+    **Common Causes:**
+
+    - PVC not bound
+    - Storage class issues
+    - Permission problems
+    - Node storage full
+
+    **Resolution:**
+
+    - Check PVC status
+    - Verify storage class
+    - Fix file permissions
+    - Free up node storage
+
+</div>
+
+<hr />
+<h2 id="advanced-debugging-techniques">🔬 Advanced Debugging Techniques<a class="headerlink" href="#advanced-debugging-techniques" title="Permanent link">&para;</a></h2>
+<h3 id="multi-layer-debugging-approach">Multi-Layer Debugging Approach<a class="headerlink" href="#multi-layer-debugging-approach" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph TB
+    subgraph &quot;Application Layer&quot;
+        A[ROS 2 Node Logs] --&gt; B[Topic Data Analysis]
+        B --&gt; C[Service Call Tracing]
+        C --&gt; D[Parameter Validation]
+    end
+
+    subgraph &quot;Container Layer&quot;
+        E[Container Logs] --&gt; F[Resource Usage]
+        F --&gt; G[Environment Variables]
+        G --&gt; H[File System State]
+    end
+
+    subgraph &quot;Orchestration Layer&quot;
+        I[Kubernetes Events] --&gt; J[Scheduler Decisions]
+        J --&gt; K[Controller Status]
+        K --&gt; L[Cluster State]
+    end
+
+    subgraph &quot;Infrastructure Layer&quot;
+        M[Node Health] --&gt; N[Network Connectivity]
+        N --&gt; O[Storage Performance]
+        O --&gt; P[Hardware Status]
+    end
+
+    D --&gt; E
+    H --&gt; I
+    L --&gt; M
+
+    style A fill:#e8f5e8
+    style P fill:#e3f2fd
+</code></pre></div>
+<h3 id="log-analysis-correlation">Log Analysis &amp; Correlation<a class="headerlink" href="#log-analysis-correlation" title="Permanent link">&para;</a></h3>
+<div class="admonition success">
+<p class="admonition-title">Effective Logging Strategy</p>
+<p><strong>Log Aggregation:</strong></p>
+<ul>
+<li>Centralized logging with ELK stack</li>
+<li>Structured logging with JSON format</li>
+<li>Correlation IDs for request tracing</li>
+<li>Log level management</li>
+</ul>
+<p><strong>Analysis Tools:</strong></p>
+<ul>
+<li>Kibana for log visualization</li>
+<li>Grafana for metrics correlation</li>
+<li>Jaeger for distributed tracing</li>
+<li>Custom dashboards for robotics KPIs</li>
+</ul>
+</div>
+<hr />
+<h2 id="getting-help-support">📞 Getting Help &amp; Support<a class="headerlink" href="#getting-help-support" title="Permanent link">&para;</a></h2>
+<h3 id="support-channels">Support Channels<a class="headerlink" href="#support-channels" title="Permanent link">&para;</a></h3>
+<div class="grid cards" markdown>
+
+-   :material-github: **GitHub Issues**
+
+    ---
+
+    Report bugs and request features
+
+    **Best Practices:**
+
+    - Search existing issues first
+    - Provide detailed reproduction steps
+    - Include system information
+    - Attach relevant logs
+
+    [Open Issue](https://github.com/TNG-Blue/Isaac_ROS_WS/issues)
+
+-   :material-discord: **Community Chat**
+
+    ---
+
+    Real-time support from community
+
+    **Available Channels:**
+
+    - General discussion
+    - Technical support
+    - Feature requests
+    - Showcase projects
+
+    [Join Discord](https://discord.gg/robotics)
+
+-   :material-book-multiple: **Documentation**
+
+    ---
+
+    Comprehensive guides and references
+
+    **Resources:**
+
+    - Installation guides
+    - API documentation
+    - Tutorials and examples
+    - Best practices
+
+    [Browse Docs](/)
+
+-   :material-school: **Learning Resources**
+
+    ---
+
+    Educational content and training
+
+    **Content:**
+
+    - Video tutorials
+    - Hands-on workshops
+    - Certification programs
+    - Expert webinars
+
+    [Start Learning](https://learn.nvidia.com/isaac)
+
+</div>
+
+<h3 id="bug-report-template">Bug Report Template<a class="headerlink" href="#bug-report-template" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Effective Bug Reporting</p>
+<p><strong>Include the Following Information:</strong></p>
+<p><strong>Environment:</strong>
+- Hardware platform (Jetson model, GPU, etc.)
+- Operating system version
+- ROS 2 distribution
+- Isaac ROS version
+- Container runtime version</p>
+<p><strong>Problem Description:</strong>
+- Steps to reproduce
+- Expected behavior
+- Actual behavior
+- Error messages</p>
+<p><strong>Diagnostics:</strong>
+- Relevant log files
+- System resource usage
+- Network configuration
+- Configuration files</p>
+</div>
+<hr />
+<h2 id="maintenance-prevention">📋 Maintenance &amp; Prevention<a class="headerlink" href="#maintenance-prevention" title="Permanent link">&para;</a></h2>
+<h3 id="proactive-maintenance-checklist">Proactive Maintenance Checklist<a class="headerlink" href="#proactive-maintenance-checklist" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Regular Maintenance Tasks</p>
+<p><strong>Daily:</strong>
+- [ ] Monitor system resources
+- [ ] Check error logs
+- [ ] Validate critical services
+- [ ] Review performance metrics</p>
+<p><strong>Weekly:</strong>
+- [ ] Clean up old containers/images
+- [ ] Update system packages
+- [ ] Check disk space usage
+- [ ] Review security alerts</p>
+<p><strong>Monthly:</strong>
+- [ ] Update Isaac ROS packages
+- [ ] Review and update documentation
+- [ ] Performance optimization review
+- [ ] Backup critical configurations</p>
+<p><strong>Quarterly:</strong>
+- [ ] Major version updates
+- [ ] Security audit
+- [ ] Disaster recovery testing
+- [ ] Hardware health check</p>
+</div>
+<h3 id="prevention-strategies">Prevention Strategies<a class="headerlink" href="#prevention-strategies" title="Permanent link">&para;</a></h3>
+<div class="grid cards" markdown>
+
+-   :material-monitor: **Monitoring**
+
+    ---
+
+    **Proactive Monitoring Setup:**
+
+    - Set up alerting thresholds
+    - Monitor key performance indicators
+    - Track resource utilization trends
+    - Implement health checks
+
+-   :material-backup-restore: **Backup & Recovery**
+
+    ---
+
+    **Data Protection:**
+
+    - Regular configuration backups
+    - Database snapshots
+    - Container image versioning
+    - Disaster recovery procedures
+
+-   :material-security: **Security**
+
+    ---
+
+    **Security Hardening:**
+
+    - Regular security updates
+    - Access control reviews
+    - Network security policies
+    - Vulnerability assessments
+
+-   :material-cog-outline: **Automation**
+
+    ---
+
+    **Automated Operations:**
+
+    - CI/CD pipelines
+    - Automated testing
+    - Self-healing systems
+    - Scaling automation
+
+</div>
+
+<hr />
+<div align="center">
+  <p><strong>🎯 Problem solved? Help improve this guide!</strong></p>
+  <p><em>Share your solutions and help the community grow stronger</em></p>
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>2025 TNG-Blue</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../js/version-select.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
